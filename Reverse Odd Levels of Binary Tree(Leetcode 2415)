@@ -1,0 +1,19 @@
+class Solution {
+    public void dfs(TreeNode l,TreeNode r,int num) {
+        if (l == null || r == null) {
+            return;
+        }
+        if (num % 2 == 0) {
+            int temp = l.val;
+            l.val = r.val;
+            r.val = temp;
+        }
+
+        dfs(l.left, r.right, num + 1);
+        dfs(l.right, r.left, num + 1);
+    }
+    public TreeNode reverseOddLevels(TreeNode root) {
+        dfs(root.left, root.right, 0);
+        return root;
+    }
+}
